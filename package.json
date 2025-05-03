@@ -8,7 +8,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "playwright test --headed ./tests",
+    "test": "playwright test ./tests",
     "e2e": "ng e2e",
     "sonar-scanner": "node_modules/sonar-scanner/bin/sonar-scanner"
   },
@@ -33,7 +33,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.2.10",
+    "@angular-devkit/build-angular": "^14.1.0",
     "@angular/cli": "^14.1.0",
     "@angular/compiler-cli": "^14.1.0-next",
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
@@ -56,7 +56,7 @@
     "nyc": "^15.1.0",
     "playwright": "^1.27.1",
     "playwright-test-coverage": "^1.2.0",
-    "protractor": "^7.0.0",
+    "protractor": "^3.3.0",
     "sonar-scanner": "^3.1.0",
     "sonarqube-scanner": "^2.8.2",
     "source-map-support": "^0.5.21",
