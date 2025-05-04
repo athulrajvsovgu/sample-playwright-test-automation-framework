@@ -16,27 +16,18 @@ jobs:
   test:
     name: Run Playwright Tests
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-
-      - name: Install dependencies
-        run:
-          npm ci
+      - name: Setup Node and deps
+        uses: ./.github/actions/setup-node
 
       - name: Install Playwright Browsers
-        run:
-          npx playwright install --with-deps
+        run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run:
-          npx playwright test tests/example.spec.ts
+        run: npx playwright test tests/example.spec.ts
 
       - name: Upload HTML report artifact
         if: always()
@@ -52,26 +43,22 @@ jobs:
         with:
           files: artifacts/junit-results.xml
 
+      - name: Code Coverage Summary Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: artifacts/cobertura-coverage.xml
+
   sonarqube:
     name: SonarQube Analysis
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '16.17.0'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: |
-          npm ci
-          npm install
+      - name: Setup Node and deps
+        uses: ./.github/actions/setup-node
 
       - name: Run tests with coverage
         run: npx ng test --watch=false --code-coverage
