@@ -27,6 +27,7 @@ const config: PlaywrightTestConfig = {
       name: 'Chrome',
       use: {
         browserName: 'chromium',
+        headless: true
       },
     },
   ],
