@@ -1,5 +1,11 @@
 name: Playwright Tests
 
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  checks: write
+
 on:
   push:
     branches: [ main, master ]
@@ -18,13 +24,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '16.17.0'
-          cache: 'npm'
+          node-version: lts/*
 
       - name: Install dependencies
-        run: |
+        run:
           npm ci
-          npm install
+
+      - name: Install Playwright Browsers
+        run:
           npx playwright install --with-deps
 
       - name: Run Playwright tests
@@ -43,7 +50,7 @@ jobs:
         if: always()
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
-          junit_files: artifacts/junit-results.xml
+          files: artifacts/junit-results.xml
 
   sonarqube:
     name: SonarQube Analysis
