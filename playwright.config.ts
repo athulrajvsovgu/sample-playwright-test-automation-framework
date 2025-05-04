@@ -1,6 +1,6 @@
-import { PlaywrightTestConfig } from '@playwright/test';
+import { defineConfig  } from '@playwright/test';
 
-const config: PlaywrightTestConfig = {
+export default defineConfig  ({
   webServer: {
     command: 'npm run start',
     url: 'http://localhost:4200',
@@ -9,8 +9,8 @@ const config: PlaywrightTestConfig = {
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     // This is the default junit path
-    ['junit', { outputFile: 'artifacts/tests/junit-test-results.xml' }],
-    ['html', { outputFolder: 'artifacts/tests/html' }],
+    ['junit', { outputFile: 'artifacts/junit-results.xml' }],
+    ['html'],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -31,6 +31,4 @@ const config: PlaywrightTestConfig = {
       },
     },
   ],
-};
-
-export default config;
+});
