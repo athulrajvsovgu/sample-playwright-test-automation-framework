@@ -20,7 +20,7 @@ const config: PlaywrightTestConfig = {
     /* Capture screenshot after each test failure. */
     screenshot: 'only-on-failure',
     /* Record video only when retrying a test for the first time. */
-    video: 'retain-on-failure',
+    // video: 'retain-on-failure',
   },
   projects: [
     {
